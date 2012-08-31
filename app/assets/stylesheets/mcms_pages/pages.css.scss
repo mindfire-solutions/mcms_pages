@@ -1,0 +1,185 @@
+/*
+
+*    @File Name                 : pages.css.scss
+*    @Company Name              : Mindfire Solutions Private Limited
+*    @Creator Name              : Vikram Kumar Mishra
+*    @Date Created              : 2012-06-06
+*    @Date Modified             : 2012-06-09
+*    @Last Modification Details : Styles added for some elements
+*    @Purpose                   : Place all the styles related to the pages controller here.
+
+*/
+
+*{
+	color: #41403C
+}
+
+body {
+  background-color: #fff;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px; }
+
+ li{
+     list-style-type: none;
+     display:inline;
+}
+
+a{
+	text-decoration: none;
+}
+
+.even
+{
+    background-color: aquamarine;
+}
+
+.pages-clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.pages-clearfix {
+    display: block;
+}
+
+.application-actions {
+    float: right;
+    padding-top: 0;
+    width: 20%;
+}
+
+
+#pages-records {
+
+    float: left;
+    width: 63%;
+
+    #page-sortable-list {
+        margin-top: 6px;
+
+        li{
+            padding: 4px 0 0 40px;
+
+            div{
+                width: 100%;
+
+                span.page-icon{
+                    background: url("icons/page.png") no-repeat scroll center center transparent;
+                    display: block;
+                    float: left;
+                    height: 16px;
+                    margin: 3px 3px 0 0;
+                    width: 16px;
+                }
+
+                span.page-icon.page-toggle.page-expanded{
+                    background-image: url("icons/folder_open.png");
+                }
+
+                span.page-icon.page-toggle{
+                    background-image: url("icons/folder_open.png");
+                }
+
+                .page-title{
+                    width:80%;
+                    text-align:left;
+                }
+
+                .page-actions{
+                    display: inline;
+                    line-height: 28px;
+                    float: right;
+                    position:absolute;
+                    top: 3px;
+                    right: 20px;
+                    width: 150px;
+                    text-align: right;
+
+                    a{
+                        margin: 3px 3px 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#pages-records.pages-tree ul li, .pages-tree ul li {
+    background: url("branch.gif") no-repeat scroll 15px 0 transparent;
+    margin: 0;
+    padding: 4px 0 0 40px;
+}
+
+#pages-records.pages-tree li {
+    line-height: 25px;
+}
+
+#pages-records > ul li{
+    line-height: 35px;
+    list-style: none outside none;
+    margin-bottom: 2px;
+    padding: 0 5px;
+    position: relative;
+    vertical-align: top;
+}
+
+#pages-records.pages-tree ul li.pages-tree-start, .pages-tree ul li.pages-tree-start {
+    background-image: url("branch-start.gif");
+}
+
+#pages-records.pages-tree ul li, .pages-tree ul li {
+    background: url("branch.gif") no-repeat scroll 15px 0 transparent;
+    margin: 0;
+    padding: 4px 0 0 40px;
+}
+
+.pages-clearfix {
+    display: block;
+}
+
+#pages-records.pages-tree ul li.pages-tree-end, .pages-tree ul li.pages-tree-end {
+    background-image: url("branch-end.gif");
+}
+
+#pages-records.pages-tree li.pages-record ul {
+    margin-left: 0;
+}
+
+#pages-records.pages-tree ul li ul, .pages-tree ul li ul {
+    padding: 0;
+}
+
+.error-explanation li
+{
+    color: red;
+    text-align: left;
+    font-weight: bold;
+}
+
+.notice {
+	color: green;
+	font-size: 16px;
+}
+
+#page-new{
+	/*background-image: url("/assets/mcms_pages/icons/add.png");
+    background-position: 12px 50%;
+    background-repeat: no-repeat;*/
+    display: block;
+}
+
+#logout-link{
+	float: right;
+	color: #41403C;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.field_with_errors{
+	display: inline;
+}
+

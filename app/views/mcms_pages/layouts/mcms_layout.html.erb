@@ -1,0 +1,38 @@
+<!--
+  @File Name                 : mcms_layout.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-05
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : This is main HTML file responsible for rendering of all view, including JS files and CSS files.
+
+-->
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+      <title>Mcms Pages</title>
+
+      <!-- render partial stylesheets -->
+      <%= stylesheet_link_tag 'mcms_pages/pages', 'mcms_pages/page_styles' %>
+
+      <%= yield :head %>
+
+      <!-- rails method to prevent cross site request forgery -->
+      <%= csrf_meta_tags %>
+
+  </head>
+
+  <body>
+
+    <!-- Output of .erb file will be rendered here as yield, This is rails standard method. -->
+    <%= yield %>
+
+  </body>
+
+</html>
+

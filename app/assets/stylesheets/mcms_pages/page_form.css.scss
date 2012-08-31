@@ -1,0 +1,64 @@
+/*
+
+*    @File Name                 : page_form.css.scss
+*    @Company Name              : Mindfire Solutions Private Limited
+*    @Creator Name              : Vikram Kumar Mishra
+*    @Date Created              : 2012-07-12
+*    @Date Modified             :
+*    @Last Modification Details :
+*    @Purpose                   : Place all the styles related to the pages form here.
+
+*/
+
+input[type=text]{
+
+	width:200px;
+
+}
+
+.field{
+	margin-bottom: 10px;
+}
+
+input[type=text], textarea {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #959595 #D3D3D3 #D3D3D3 #959595;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    font-family: arial;
+    font-size: 12px;
+    margin: 0 0 0.2em;
+    width: 300px;
+    padding: 0.4% 0.5%;
+}
+
+ul{
+
+	padding: 0px;
+
+}
+
+li a{
+	cursor: pointer;
+}
+#page-tabs{
+	margin-top: 10px;
+	width:900px;
+}
+.page-part-fields{
+
+	padding-top: 10px;
+
+}
+
+#dashboard a.create-page-part-link{
+
+	padding: 5px 10px;
+
+}
+

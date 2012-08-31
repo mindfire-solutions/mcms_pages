@@ -1,0 +1,37 @@
+<!--
+  @File Name                 : pages/show.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-05
+  @Date Modified             : 2012-06-14
+  @Last Modification Details :
+  @Purpose                   : To show the individual page preview, on the basis of layout choosed.
+
+-->
+
+<% page = arrange_page_part(@page) %>
+
+<!-- render partial for header -->
+<%= render :partial => 'mcms_pages/layouts/header', :locals => {:p => page["header"]} unless page["header"].nil? %>
+
+<!-- render menu page -->
+<%= render :partial => 'mcms_pages/pages/menu' if not @page.link_url == '\404' %>
+
+<!-- render partial _main_body.html.erb -->
+<%=
+  render "mcms_pages/pages/main_body", :p => page["left body"], :side => "left", :layout => layout_name(@page.layout.column_count) unless page["left body"].nil?
+%>
+
+<!-- render partial _main_body.html.erb -->
+<%=
+  render "mcms_pages/pages/main_body", :p => page["right body"], :side => "right", :layout => layout_name(@page.layout.column_count) unless page["right body"].nil?
+%>
+
+<!-- render partial _main_body.html.erb -->
+<%=
+  render "mcms_pages/pages/main_body", :p => page["main body"], :side => "main", :layout => layout_name(@page.layout.column_count) unless page["main body"].nil?
+%>
+
+<!-- render partial for footer -->
+<%= render :partial => 'mcms_pages/layouts/footer', :locals => {:p => page["footer"]}  unless page["footer"].nil?  %>
+

@@ -1,0 +1,42 @@
+<!--
+
+  @File Name                 : admin/pages/_error_messages.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-07-04
+  @Date Modified             : 
+  @Last Modification Details : 
+  @Purpose                   : To display the form errors
+
+-->
+
+<!-- check for occurences of any errors --> 
+<% if object.errors.any? %>
+
+  <div class="error-explanation" id="error-explanation">
+    
+    <ul>
+
+      <% unless defined?(include_object_name) and include_object_name %>
+      
+        <% object.errors.each do |key, value| %>
+      
+          <li><%= value %></li>
+          
+        <% end %>
+          
+      <% else %>
+          
+        <% object.errors.full_messages.each do |value| %>
+          
+          <li><%= value %></li>
+          
+        <% end %>
+          
+      <% end %>
+          
+    </ul>
+
+  </div>
+
+<% end %>

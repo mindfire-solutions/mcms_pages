@@ -1,0 +1,25 @@
+<!--
+  @File Name                 : _main_body.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-14
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : To display the main body content of pages.
+
+-->
+
+<div class="page-<%= side %>-body" id="<%= layout %>-<%= side %>-body">
+
+  <%  if p.nil? %>
+
+    <p style="color:red;font-weight:bold;">Please Create the body of the Page, You have not created it yet.</p>
+
+  <% else %>
+
+    <%= p.body.html_safe  %>
+
+  <% end %>
+
+</div>
+

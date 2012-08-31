@@ -1,0 +1,22 @@
+<!--
+  @File Name                 : _stylesheets.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-09
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : To render controller action specific CSS files.
+
+-->
+
+<!--
+  calling libray class method get_css of class AssetManager
+  to load specified css files listed in controller
+-->
+<% Asset.get_css.each do |css| %>
+
+  <!-- loading specified css file -->
+  <%= stylesheet_link_tag  css %>
+
+<% end %>
+

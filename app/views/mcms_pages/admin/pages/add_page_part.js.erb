@@ -1,0 +1,52 @@
+/*
+
+ * @File Name                 : pages/_add_page_part.js.erb
+ * @Company Name              : Mindfire Solutions Private Limited
+ * @Creator Name              : Vikram Kumar Mishra
+ * @Date Created              : 2012-07-03
+ * @Date Modified             :
+ * @Last Modification Details :
+ * @Purpose                   : To show the partial for creating a page part
+
+*/
+
+$(document).ready(function(){
+
+  <% if @part == "page_part" %>
+
+    <%
+        #calling helper method to create form object
+        builder = build_page_part(@index)
+    %>
+
+    // remove html element with given id
+    $("#page_page_parts_pages_attributes_<%= @index %>__destroy").remove();
+
+    // insert a hidden field for destroying the page part page with default value 1.
+    $("#page-part-fields-<%= @index %>").after('<%= hidden_field_tag "page[page_parts_pages_attributes][#{@index}][_destroy]", "1" %>');
+
+    var html = "<%= escape_javascript(render 'mcms_pages/admin/pages/page_part_form_field',
+                                      :part_index => @index, :f => builder, :title => @title)  %>";
+
+  <% else %>
+
+    <%
+      #calling helper method to create form object
+      builder = build_page_part_page(@index)
+    %>
+
+    <% fragment = get_fragments(@title) %>
+
+    var html = "<%= escape_javascript(render 'mcms_pages/admin/pages/page_part_page_form_field',
+                                      :part_index => @index, :f => builder, :title => @title, :fragment => fragment)  %>";
+
+    // reset the value in hidden field for destroying page part pages to 0.
+    $("#page_page_parts_pages_attributes_<%= @index %>__destroy").val("0");
+
+  <% end %>
+
+  // change the html content of div page-part-fields
+  $("#page-part-fields-<%= @index %>").html(html);
+
+}); // end ready function
+

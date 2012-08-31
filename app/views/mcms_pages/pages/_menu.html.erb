@@ -1,0 +1,24 @@
+<!--
+  @File Name                 : pages/_menubar.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-07-05
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : To show the menu items.
+
+-->
+
+<div class="pages-menu" id="pages-menu">
+
+  <ul class="pages-menu-ul">
+
+    <!-- include menubar page for the application-->
+    <%= 
+      render :partial => 'mcms_pages/pages/menubar', :collection => @menu_pages.select{|p| p.parent_id.nil? and p.link_url != '/404'}
+    %>
+
+  </ul>
+
+</div>
+

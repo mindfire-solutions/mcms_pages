@@ -1,0 +1,128 @@
+<!--
+
+  @File Name                 : layouts/_index.js.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-08-20
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : To show the page preview on click of preview submit button.
+
+-->
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+
+    //creating an empty array to store all checked elements
+    var layout = ["main"];
+
+    //assigning DOM element checkbox in a variable
+    var eltCheckbox = $('.layout-select');
+    var btnGo = $('#layout-select-button');
+
+    var demoContent = $(".preview-center").html();
+
+    /*
+     * @params   : None
+     * @return   : None
+     * @purpose  : initializing the functions call to bind events with DOM element
+     */
+    var initialize = function(){
+
+        //function call to show layout preview on change of checkbox selection
+        eltCheckbox.change(boxPreviewLayout);
+
+        //function call to show layout preview on change of checkbox selection
+        btnGo.click(redirectToFindLayout);
+
+    } // end initialize function
+
+    /*
+     * @params   : None
+     * @return   : None
+     * @purpose  : making the layout preview div empty and calling the function to show the layout preview
+     */
+    var boxPreviewLayout = function(){
+
+      $('.layout-preview').html('');
+      
+      $('.layout-preview').removeClass('with-header with-footer');
+
+      //function call to loop through each checked element and show the preview layout for selected parts
+      previewLayout();
+
+    }  // end boxPreviewLayout function for checkboxes
+
+    /*
+     * @params   : None
+     * @return   : None
+     * @purpose  : showing the preview of page layout on select of checkboxes
+     */
+    var previewLayout = function(){
+
+      var i = 1;
+
+      //loop through each selected checkboxes
+      $('.layout-select:checked').each(function(){
+
+
+        //add class with-header if header is selected
+        if($(this).val() == 'header')
+        {
+
+          $('.layout-preview').addClass('with-header');
+
+        }
+        else if($(this).val() == 'footer') //add class with-footer if footer is selected
+        {
+
+          $('.layout-preview').addClass('with-footer');
+
+        } 
+
+        if($(this).val() == "left" || $(this).val() == "right")
+        {
+
+           //append required div based on checkbox selected
+           $('.layout-preview').append('<div class="preview-'+$(this).val()+'">'+demoContent.substring(0,demoContent.indexOf('</p>')+4)+'</div>');
+
+        }
+        else
+        {
+
+          //append required div based on checkbox selected
+          $('.layout-preview').append('<div class="preview-'+$(this).val()+'">'+$(this).val()+' Area</div>');
+          
+        } // end if
+
+        //assign current layout element to an array
+        layout[i] = $(this).val();
+
+        //increase the index by 1
+        i = i+1; 
+
+      }); // end each function for checkboxes
+
+      // append default center div
+      $('.layout-preview').append('<div class="preview-center">'+demoContent+'</div>');
+      
+    } // end previewLayout function
+
+     /*
+     * @params   : None
+     * @return   : None
+     * @purpose  : To redirect to the rails action to find and use layout
+     */
+    var redirectToFindLayout = function(){
+  
+      window.location = "/mcms/layouts/find_and_use_layout?layout="+layout;
+
+    }
+
+    //calling initialize function
+    initialize();
+
+  }); // end ready function
+
+</script>

@@ -1,0 +1,29 @@
+<!--
+  @File Name                 : admin/pages/index.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-09
+  @Date Modified             : 2012-06-14
+  @Last Modification Details : 'mcms-' removed from css selectors
+  @Purpose                   : To display the list of pages and actions to be taken on those pages through rendering partials.
+
+-->
+
+<p class="notice"> <%= notice %></p>
+<div id='pages-records' class='pages-tree'>
+
+  <ul id='page-sortable-list'>
+
+    <!-- render partial _page.html.erb -->
+    <%= render :partial => 'mcms_pages/admin/pages/page', :collection => @pages.select{|p| p.parent_id.nil?}  %>
+
+  </ul>
+
+</div>
+
+<!-- render partial _action.html.erb -->
+<%= render 'mcms_pages/admin/pages/action' %>
+
+<!-- render partial _head.html.erb to include JS and CSS for specific page-->
+<%= render :partial => "mcms_pages/layouts/head" %>
+

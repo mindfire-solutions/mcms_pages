@@ -1,0 +1,38 @@
+<!--
+  @File Name                 : pages/_menubar.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-07-05
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : To show the menu items.
+
+-->
+
+<li id="<%= dom_id(menubar) -%>" class="pages-menu-li">
+
+  <% if controller.action_name == "preview" %>
+
+    <%= link_to menubar.title, preview_page_path(menubar.nested_url) %>
+
+  <% else %>
+
+    <%= link_to menubar.title, show_page_path(menubar.nested_url) %>
+
+  <% end %>
+
+  <% if menubar.children.present? and menubar.link_url != "/" %>
+
+    <ul class="pages-nested-menu-ul">
+
+      <!-- render partial _menubar.html.erb if pages have children -->
+      <%=
+        render(:partial => 'mcms_pages/pages/menubar', :collection => menubar.children.select{|p| p.show_in_menu? and p.published?})
+      %>
+
+    </ul>
+
+  <% end %>
+
+</li>
+

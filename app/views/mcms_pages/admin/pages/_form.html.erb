@@ -1,0 +1,90 @@
+<!--
+
+  @File Name                 : admin/pages/_form.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-05
+  @Date Modified             : 2012-06-15
+  @Last Modification Details : Layout field changed from select box to hidden field
+  @Purpose                   : To display the form to create and edit pages and page parts
+                               using form helpers to renders the form fields using erb tag.
+
+-->
+
+<!-- displaying form for creating pages -->
+<%= form_for [:admin, @page] do |f| %>
+
+  <!-- render partial for error messages with some locals -->
+  <%= render :partial => "mcms_pages/admin/pages/error_messages",
+             :locals => {
+               :object => f.object,
+               :include_object_name => true
+             } %>
+
+  <div class="field">
+
+    <!-- calling form helper method to render dropdown box -->
+    <%= f.hidden_field :layout_id, :value => "#{@layout}" %>
+
+  </div>
+  <div class="field">
+
+    <%= f.label :title, "Title of the Page:" %>
+    <%= f.text_field :title, :title => "This will be the title of your page" %>
+
+  </div>
+  <div class='field'>
+
+    <%= f.label :body, "Content of the Page:" %>
+
+    <% if controller.action_name == 'new' or controller.action_name == 'create'%>
+
+      <!-- rendering partial page part form -->
+      <%= render 'mcms_pages/admin/pages/page_part_form', :f => f %>
+
+    <% else %>
+
+      <!-- rendering partial page part form -->
+      <%= render 'mcms_pages/admin/pages/page_part_edit_form', :f => f %>
+
+    <% end %>
+
+  </div>
+  <div class="field">
+
+    <%= f.label :parent_id, "Parent Page(If Any):" %>
+
+    <!-- calling form helper method and awesome_nested_set helper method to render dropdown box -->
+    <%= f.select(:parent_id, nested_set_options(Page, @page) {|p|  p.title }, {:include_blank => 'Select Page'}) %>
+
+  </div>
+  <div class="field">
+
+    <%= f.label :link_url, "Forward this page to another website or page: " %>
+    <%= f.text_field :link_url, :title => "Use full url, e.g.- http://www.google.com" %>
+
+  </div>
+  <div class="field">
+
+    <%= f.check_box :show_in_menu %>
+    <%= f.label :show_in_menu %>
+
+  </div>
+  <div class="field">
+
+    <%= f.check_box :published %>
+    <%= f.label :published, "Publish this page" %>
+
+  </div>
+  <div class="actions">
+
+    <%= f.submit %>
+    <%= f.submit :value => "Preview", :id => "preview-submit" %>
+
+  </div>
+
+  <!-- include _form.js.erb to handle the click event on preview button -->
+  <%=  render 'mcms_pages/admin/pages/form.js'%>
+
+<% end %>
+

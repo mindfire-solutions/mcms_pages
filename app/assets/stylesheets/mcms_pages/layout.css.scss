@@ -1,0 +1,171 @@
+// Place all the styles related to the layout controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.layouts{
+
+    text-align: left;
+
+}
+
+.layout-preview{
+    background-color: gray;
+    border: 1px dashed yellow;
+    width: 1000px;
+    height: 450px;
+    margin: auto;
+    text-transform: capitalize;
+    word-wrap: break-word;
+    position: relative;
+}
+
+.preview-center {
+
+    min-width: 280px;
+    padding: 115px 250px;
+
+}
+
+.preview-right {
+
+    border-left: 1px dashed red;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    height: 220px;
+    width: 200px;
+    padding: 115px 15px;
+}
+
+.preview-left {
+
+    border-right: 1px dashed red;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 220px;
+    width: 200px;
+    padding: 115px 15px;
+}
+
+.preview-header {
+
+    border-bottom: 1px dashed red;
+    height: 30px;
+    width: 1000px;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+    padding: 25px 0;
+
+}
+
+.preview-footer {
+
+    border-top: 1px dashed red;
+    position: absolute;
+    bottom: 0px;
+    height: 30px;
+    width: 1000px;
+    padding: 25px 0;
+    text-align: center;
+}
+
+.layout-preview.with-left {
+
+    .preview-center {
+        min-width: 280px;
+        min-height: 320px;
+        padding: 115px 20px 80px 250px;
+    }
+}
+
+.layout-preview.with-right {
+
+    .preview-center {
+        min-width: 280px;
+        min-height: 320px;
+        padding: 115px 250px 80px 20px;
+    }
+}
+
+.layout-preview.with-header {
+
+    .preview-center {
+        min-width: 280px;
+        min-height: 320px;
+        padding: 140px 250px;
+    }
+
+    .preview-right, .preview-left {
+
+        height: 250px;
+        top: 80px;
+        padding: 60px 15px;
+    }
+
+}
+
+.layout-preview.with-footer {
+
+    .preview-center {
+        min-width: 280px;
+        min-height: 320px;
+        padding: 80px 250px;
+    }
+
+    .preview-right, .preview-left {
+
+        height: 210px;
+        top: 0;
+        bottom: 80px;
+        padding: 80px 15px;
+    }
+
+}
+
+.layout-preview.with-footer.with-header {
+
+    .preview-center {
+
+        min-height: 240px;
+        min-width: 280px;
+        padding: 115px 250px;
+
+    }
+
+    .preview-right {
+
+        border-left: 1px dashed red;
+        position: absolute;
+        right: 0px;
+        top: 80px;
+        height: 255px;
+        width: 200px;
+        padding: 35px 10px 0;
+    }
+
+    .preview-left {
+
+        border-right: 1px dashed red;
+        position: absolute;
+        left: 0px;
+        top: 80px;
+        height: 255px;
+        width: 200px;
+        padding: 35px 10px 0;
+    }
+
+}
+
+
+
+.button-go {
+
+    margin-top: 20px;
+    margin-left: 580px;
+    position: relative;
+
+}
+

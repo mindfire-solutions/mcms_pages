@@ -1,0 +1,22 @@
+<!--
+  @File Name                 : _javascript.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-09
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : To render controller action specific javascript files.
+
+-->
+
+<!--
+  calling libray class method get_libraries of class AssetManager
+  to load specified js files listed in controller
+-->
+<% Asset.get_libraries.each do |library| %>
+
+  <!-- include specific javascript file to page -->
+  <%= javascript_include_tag  library %>
+
+<% end %>
+

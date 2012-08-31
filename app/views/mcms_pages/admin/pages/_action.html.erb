@@ -1,0 +1,43 @@
+<!--
+
+  @File Name                 : admin/pages/_mcms_action.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-09
+  @Date Modified             : 2012-06-14
+  @Last Modification Details : 'mcms-' removed from css selectors
+  @Purpose                   : Application level action for admin pages will be defined here.
+
+-->
+
+
+<div class="repos application-actions">
+
+  <div class="top-bar">
+
+    <h2>Quick tasks </h2>
+    <%= link_to "Add a New Page", new_admin_page_path, :id => "page-new", :class =>"button new-repo" %>
+
+  </div>
+
+  <ul class="repo-list">
+
+    <li class="public source">
+
+      <a href="/" target="_blank">
+
+        <span class="mini-icon"></span>
+        <span class="owner">Switch to Website</span><span class="repo"></span>
+        <span class="arrow"></span>
+        
+      </a>
+
+    </li>
+
+  </ul>
+
+  <div class="bottom-bar">
+  </div>
+
+</div>
+

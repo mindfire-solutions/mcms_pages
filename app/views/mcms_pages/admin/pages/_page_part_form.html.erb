@@ -1,0 +1,133 @@
+<!--
+
+  @File Name                 : admin/pages/_page_part_form.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-07
+  @Date Modified             : 2012-06-14
+  @Last Modification Details : 'mcms-' removed from css selectors
+  @Purpose                   : To display the partial for page part form fields.
+
+-->
+
+<div id='page-tabs' class="page-tabs clearfix ui-tabs ui-widget ui-widget-content ui-corner-all" >
+
+
+  <ul id='page-parts-ul' class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+
+    <!-- creating an empty array -->
+    <% title = [] %>
+
+    <!-- creating an empty hash to store page fragments value -->
+    <% page_fragment = Hash.new %>
+
+    <!-- creating an empty hash to store page_parts value -->
+    <% x = Hash.new %>
+
+    <!-- creating an empty hash to store page_parts_pages value -->
+    <% y = Hash.new %>
+
+    <!-- declaring some local variables to be used as hash index in loop -->
+    <% i = 0 %>
+    <% j = 0 %>
+
+    <!--
+      looping through the  array
+      to display the link for different page parts
+    -->
+    <% @parts.each_with_index do |part, index| %>
+
+      <li class="page-parts-li ui-state-default ui-corner-top ui-state-active ">
+
+        <%= link_to part, "javascript:void(0)", :id => "#page-part-fields-#{index}" %>
+        <% title[index] = part %>
+
+        <!-- calling helper method to check existence of similar page parts -->
+        <%  page_fragment[index] = get_fragments(part) %>
+
+        <!-- check  if page_fragment is nil or empty -->
+        <% if page_fragment[index].nil? or page_fragment[index].empty? %>
+
+          <!-- store page_parts value -->
+          <% x[i] = index %>
+
+          <!-- increment local variables by 1 -->
+          <% i = i+1 %>
+
+        <% else %>
+
+          <!-- store page_parts_pages value -->
+          <% y[j] = index %>
+
+          <!-- increment local variables by 1 -->
+          <% j = j+1 %>
+
+        <% end %>
+
+      </li>
+
+    <% end  %>
+
+  </ul>
+
+  <div id='page-part-form'>
+
+    <!-- initializing the variable to create a unique id for different page part fields -->
+    <% index = 0  %>
+
+    <!-- rendering the form for association page part -->
+    <%= f.fields_for :page_parts do |p| %>
+
+      <!-- check  if page_fragment is nil or empty -->
+      <% if not x[index].nil? and (page_fragment[x[index]].nil? or page_fragment[x[index]].empty?) %>
+
+        <!-- if yes then render the partial for page_part -->
+        <%= render 'mcms_pages/admin/pages/page_part_form_field',
+                    :f => p,
+                    :part_index => x[index],
+                    :title => title[x[index]]
+        %>
+
+        <!-- increment index by 1 -->
+        <% index += 1 %>
+
+      <% else %>
+
+        <!-- increment index by 1 -->
+        <% index += 1 %>
+
+      <% end %>
+
+    <% end %>
+
+    <!-- initializing the variable to loop though the HASH page_fragment -->
+    <% loop_index = 0 %>
+
+    <!-- rendering the form for association page_part_pages -->
+    <%= f.fields_for :page_parts_pages do |p| %>
+
+      <% if not y[loop_index].nil? and not (page_fragment[y[loop_index]].nil? and page_fragment[y[loop_index]].empty?) %>
+
+        <%= render 'mcms_pages/admin/pages/page_part_page_form_field',
+                    :f => p,
+                    :part_index => y[loop_index],
+                    :fragment => page_fragment[y[loop_index]],
+                    :title => title[y[loop_index]]
+        %>
+
+        <!-- increment loop_index by 1 -->
+        <% loop_index += 1 %>
+
+      <% else %>
+
+        <!-- increment loop_index by 1 -->
+        <% loop_index += 1 %>
+
+      <% end %>
+
+    <% end %>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,81 @@
+<!--
+
+  @File Name                 : admin/layouts/index.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-15
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : To display all the layouts and respective image and let the user choose the specific layout.
+
+-->
+
+<h3> Check all the checkboxes which you want to appear on your page </h3>
+
+<% loop_count = 1 %>
+
+<div class="layouts">
+
+  <% layout_parts.each do |layout_part| %>
+
+    <% if layout_part == "main" %>
+
+      <%= check_box_tag 'layout-center', layout_part, false, :multitple => true, :disabled => true,
+                        :id => "layout-select-#{loop_count}", :checked => true, :readonly => true %>
+
+      <%= "center".capitalize %>
+
+    <% else %>
+
+      <%= check_box_tag 'layout[]', layout_part, false, :multitple => true,
+                        :id => "layout-select-#{loop_count}", :class => "layout-select"%>
+
+      <%= layout_part.capitalize %>
+
+    <% end %>
+
+    <% loop_count = loop_count+1 %>
+
+  <% end %>
+
+  <p>
+
+    <h4> Below is a sample of how your page will look like.</h4>
+
+  </p>
+
+  <div class="layout-preview">
+
+    <div class="preview-center">
+
+      <p>
+
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+        Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non,
+        facilisis vitae, nulla.
+
+      </p>
+      <p>
+
+        Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque,
+        sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim.
+        Sed tortor. Curabitur molestie.
+
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="button-go">
+
+    <%= button_tag "Use This Layout", :class => "button new-repo" , :id => "layout-select-button" %>
+
+  </div>
+
+</div>
+
+<%= render "mcms_pages/admin/layouts/index.js" %>
+<!-- render partial _head.html.erb to include JS and CSS for specific page-->
+<%= render :partial => "mcms_pages/layouts/head" %>
+

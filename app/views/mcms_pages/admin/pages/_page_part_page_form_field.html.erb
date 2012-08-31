@@ -1,0 +1,29 @@
+<!--
+
+  @File Name                 : admin/pages/_page_part_page_form_field.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-26
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : To display page_part_pages form fields.
+
+-->
+
+<div id="page-part-fields-<%= part_index %>" class='page-part-fields'>
+
+  <%= f.label :page_part_id, "Choose Existing #{title}",
+              :id => "page_page_parts_pages_attributes_#{part_index}_page_part_id" %>
+
+  <%= f.select(:page_part_id, fragment.collect {|p| [ "#{p[1]} #{title}", p[0] ] },{},
+              {:id => "page_page_parts_pages_attributes_#{part_index}_page_part_id",
+              :name => "page[page_parts_pages_attributes][#{part_index}][page_part_id]"}) unless fragment.nil? %>
+  OR
+
+  <%= link_to "Create New #{title}",
+              {:controller=>"pages", :action => 'add_page_part',
+               :title => "#{title}", :index => "#{part_index}", :part => "page_part"},
+              :remote => true,:id => "create-page-part-link-#{part_index}", :class => "create-page-part-link" %>
+
+</div>
+

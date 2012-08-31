@@ -1,0 +1,56 @@
+<!--
+
+  @File Name                 : pages/_form.js.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-19
+  @Date Modified             :
+  @Last Modification Details :
+  @Purpose                   : To show the page preview on click of preview submit button.
+
+-->
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+    // on click of preview button
+    $("#preview-submit").live('click', function(e) {
+
+      // Assigning the form elt in a variable
+      var formElt = $(this).parents('form');
+
+      // Assigning the form action in a variable
+      var formAction = formElt.attr('action');
+
+      // Assigning the form target in a variable
+      var formTarget = formElt.attr('target');
+
+      // setting the new action and target for form element
+      formElt.attr({
+
+        'action': '<%= @page.persisted? ? preview_page_path(@page.nested_url) : preview_pages_path %>',
+        'target': '_blank'
+
+      });
+
+      //submit the form
+      formElt.submit();
+
+      // reset the action for form element
+      formElt.attr({
+
+        'action': formAction,
+        'target': ""
+
+      });
+
+      //prevent the defaault action for the click event
+      e.preventDefault();
+
+    });
+
+  });
+
+</script>
+

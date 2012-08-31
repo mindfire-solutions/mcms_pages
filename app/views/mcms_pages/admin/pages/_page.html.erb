@@ -1,0 +1,63 @@
+<!--
+
+  @File Name                 : admin/pages/_page.html.erb
+  @Company Name              : Mindfire Solutions Private Limited
+  @Creator Name              : Vikram Kumar Mishra
+  @Date Created              : 2012-06-09
+  @Date Modified             : 2012-06-14
+  @Last Modification Details : 'mcms-' removed from css selectors
+  @Purpose                   : To display the page title and actions for all pages
+
+-->
+
+<li id="<%= dom_id(page) -%>" class="pages-clearfix page-records">
+
+  <div class="pages-clearfix">
+
+    <!-- check if pages have children -->
+    <% if page.children.present? %>
+
+      <span class="page-icon page-toggle page-expanded" title=""></span>
+
+    <% else %>
+
+      <span class="page-icon"></span>
+
+    <% end %>
+
+    <span class="page-title" >
+
+      <%= page.title %>
+
+    </span>
+    <span class="page-actions">
+
+      <!-- check if page is deletable -->
+      <%  if deleteable?(page) %>
+
+        <%= link_to image_tag("mcms_pages/icons/delete.png", :title => "delete this page", :alt => "delete"), admin_page_path(page),
+                              :data => {:confirm => 'Are you sure?'}, method: :delete  %>
+
+      <% end %>
+
+      <%= link_to image_tag("mcms_pages/icons/page_edit.png", :title => "edit this page", :alt => "edit page"),
+                            edit_admin_page_path(page.nested_url) %>
+      <%= link_to image_tag("mcms_pages/icons/page_add.png", :title => "add a child page", :alt => "add a child"),
+                             new_admin_page_path(:parent_id => page.id) %>
+      <%= link_to image_tag("mcms_pages/icons/application_go.png", :title => "preview this page", :alt => "preview this page"),
+                             preview_page_path(page.nested_url), :target => "_blank" %>
+
+    </span>
+
+  </div>
+
+
+  <ul class="page-nested" data-ajax-content="<%= admin_path(page) %>">
+
+    <!-- render partial _page.html.erb if pages have children -->
+    <%= render(:partial => 'mcms_pages/admin/pages/page', :collection => page.children) if page.children.present? %>
+
+  </ul>
+
+</li>
+
